@@ -29,14 +29,14 @@ Script Languages:
 The Application will need **npm** and **Node.js** installed on the machine. Follow these steps [here](https://www.npmjs.com/get-npm) to get ready.
 
 ### 3.2 Installation
-``` git clone [this project]```
-``` cd ./renwallet ```
-``` npm install --save web3 ```
-``` npm install --save @renproject/ren ```
+``` git clone [this project]```<br/>
+``` cd ./renwallet ```<br/>
+``` npm install --save web3 ```<br/>
+``` npm install --save @renproject/ren ```<br/>
 ``` npm install ```
 
 ### 3.3 Start the Application
-```cd ./[project_root]```
+```cd ./[project_root]```<br/>
 ```npm run start```
 
 The Application is now running at
