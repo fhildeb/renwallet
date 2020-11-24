@@ -1,38 +1,277 @@
+/**
+ * React ClassNames
+ * ordered by use
+ */
+
 .App {
   text-align: center;
+  padding: 10px;
+  font-family: 'Courier New', Courier, monospace;
+  width: 700px;
+  margin: auto;
+  margin-top: 5%;
+  overflow: hidden;
+  color: #f8f8f8;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.RenContainer {
+  background-color: #373F42;
+  width: 500px;
+  border-radius: 6px;
+  padding: 10px;
+  float: left;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.WalletStatusContainer {
+  width: 100%;
+  background-color: #2784A1;
+  border-radius: 6px;
+}
+
+.WalletStatusBar {
+  border-radius: 6px;
+  margin: 0 auto;
+  display: table;
+}
+
+.WalletStatusLeft {
+  position: absolute;
+}
+
+.MetamaskPicture {
+  width: 15px;
+  padding-top: 17px;
+}
+
+.WalletStatusRight {
+  float: left;
+  padding-left: 20px;
+  position: inline-block;
+}
+
+.StatusBarText {
+  text-align: left;
+}
+
+.WalletOverview {
+  background-color: #454F54;
+  padding: 10px;
+  border-radius: 6px;
+  margin-top: 10px;
+}
+
+.WalletOverviewLeft {
+  background-color: #454F54;
+  width: 50%;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  display: inline-block;
+  height: 130px;
+  position: relative;
+}
+
+.RenPicture {
+  width: 35%;
+  margin-left: -40px;
+  padding-top: 22px;
+  position: absolute;
+}
+
+.PicturePulse{
+  animation: anim 2s infinite alternate;
+}
+
+.WalletOverviewRight {
+  background-color: #454F54;
+  width: 50%;
+  text-align: left;
+  float: right;
+  text-align: center;
+  height: 130px;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.WalletHeading {
+  font-size: 20px;
+}
+
+.Ren {
+  background-color: #454f54;
+  padding: 10px;
+  border-radius: 6px;
+  position: relative;
+  margin-top: 10px;
+}
+
+.RenFunctionBar {
+  background-color:#454F54;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.RenButton {
+  display: inline-block;
+  border-radius: 6px;
+  background-color: #2784A1;
+  border: none;
+  color: #f8f8f8;
+  text-align: center;
+  padding: 15px;
+  width: 48%;
+  transition: all 0.5s;
+  cursor: pointer;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.RenButton span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.RenButton span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.RenButton:hover span {
+  padding-right: 25px;
+}
+
+.RenButton:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.RenStatusBar {
+  background-color: #373F42;
+  border-radius: 6px;
+  height: 150px;
+}
+
+.RenStatusBarHeading {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.OptionWindow {
+  background-color: #373f42;
+  padding: 10px;
+  width: 125px;
+  border-radius: 6px;
+  float: left;
+  margin-top: 70px;
+  margin-left: 10px;
+  height: 135px;
+}
+
+.OptionButton {
+  display: inline-block;
+  border-radius: 6px;
+  background-color: #2784A1;
+  border: none;
+  color: #f8f8f8;
+  text-align: center;
+  padding: 9px;
+  width: 125px;
+  transition: all 0.5s;
+  cursor: pointer;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.AdvancedWindow {
+  margin-top: 500px;
+  border-radius: 6px;
+  width: 1000px;
+  display: none;
+}
+
+.AdvancedMessageBox {
+  background-color: #373f42;
+  border-radius: 6px;
+  padding: 10px;
+  width: 680px;
+}
+
+.AdvancedHeading {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 6px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  background-color: #0385a1;
+  margin-bottom: 0px;
+}
+
+.AdvancedAttribute {
+  background-color: #454F54;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  margin-top: 10px;
+  padding-top: 5px;
+}
+
+.PreDeposit {
+  height: 145px;
+}
+
+.EthTXBar {
+  margin: auto;
+  background-color: #454F54;
+  min-height: 20px;
+  margin-top: -26px;
+  padding-top: 15px}
+
+.EthTXProgress {
+  width: 95%;
+}
+
+.EthTXText {
+  padding-top: 15px;
+  margin: auto;
+  background-color: #454F54;
+  min-height: 20px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  margin-top: -16px;
+}
+
+/**
+ * HTML-Tag Formation
+ */
+
+button + button {
+  margin-left: 10px;
+}
+
+pre {
+  text-align: left;
+  background-color: #454F54;
+  min-height: 20px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  margin-top: -16px;
+  padding-top: 5px;
+}
+
+/**
+ * Keyframe Values for Animation
+ */
+
+@keyframes anim {
+  0% {
+    opacity: .2;
+    z-index: .2;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+  
+  100% {
+    opacity: 1;
+    z-index: 1
   }
 }
