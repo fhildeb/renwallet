@@ -13,7 +13,7 @@ import ABI from "./ABI.json";
  * which is currently deployed to following address:
  * 0x557e211EC5fc9a6737d2C6b7a1aDe3e0C11A8D5D 
  */
-const contractAddress = "0x3Aa969d343BD6AE66c4027Bb61A382DC96e88150";
+const contractAddress = "0x4041F84910CbF99BfF7f1c5F4b4Ce07eF50A10a7";
 
 class App extends React.Component {
   constructor(props) {
@@ -248,8 +248,8 @@ class App extends React.Component {
 
     var accountaddress = web3.currentProvider.selectedAddress;
     const ethbalance = await web3.eth.getBalance(accountaddress);
-    this.setState({ balance: Number(parseInt(btcbalance.toString()) / 10 ** 8).toFixed(6) });
-    this.setState({ ether: Number(web3.utils.fromWei(ethbalance)).toFixed(6) });
+    this.setState({ balance: Number(parseInt(btcbalance.toString()) / 10 ** 8).toFixed(5) });
+    this.setState({ ether: Number(web3.utils.fromWei(ethbalance)).toFixed(5) });
   }
 
   /**
@@ -340,16 +340,17 @@ class App extends React.Component {
     
     // Show address for transfer of their BTC.
     const gatewayAddress = await mint.gatewayAddress();
-    this.log(`Deposit ${amount} BTC to ${gatewayAddress}`);
+    this.log(`Deposit more than ${amount+0.00000001} BTC to ${gatewayAddress}`);
 
     // Wait for the Darknodes to detect the BTC transfer.
     const confirmations = 0;
     const deposit = await mint.wait(confirmations)
     .on("deposit", deposit => this.storeTransfer({ ...transfer, deposit }))
-    .on("deposit", deposit => this.updateAdvancedView(0, deposit));
+    .on("deposit", deposit => this.updateAdvancedView(0, deposit))
+    .on("deposit", deposit => console.log(deposit));
     
     // Retrieve signature from RenVM.
-    this.log("Submitting to RenVM...");
+    this.log("Submitting to RenVM... waiting for two confirmations on the Bitcoin Blockchain");
     const signature = await deposit.submit()
       .on("status", status => this.updateAdvancedView(1, status))
 
