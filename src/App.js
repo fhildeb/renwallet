@@ -345,6 +345,7 @@ class App extends React.Component {
     // Wait for the Darknodes to detect the BTC transfer.
     const confirmations = 0;
     const deposit = await mint.wait(confirmations)
+    .on("deposit", deposit => this.storeTransfer({ ...transfer, deposit }))
     .on("deposit", deposit => this.updateAdvancedView(0, deposit));
     
     // Retrieve signature from RenVM.
