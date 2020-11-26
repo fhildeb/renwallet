@@ -13,7 +13,7 @@ import ABI from "./ABI.json";
  * which is currently deployed to following address:
  * 0x557e211EC5fc9a6737d2C6b7a1aDe3e0C11A8D5D 
  */
-const contractAddress = "0x4041F84910CbF99BfF7f1c5F4b4Ce07eF50A10a7";
+const contractAddress = "0xb9b0442DE9BC214a23B434Ee2Ec7AF8A4e1b3eeE";
 
 class App extends React.Component {
   constructor(props) {
@@ -244,11 +244,11 @@ class App extends React.Component {
   updateBalances = async () => {
     const { web3 } = this.state;
     const contract = new web3.eth.Contract(ABI, contractAddress);
-    const btcbalance = await contract.methods.balance().call();
+    const balance = await contract.methods.balance().call();
+    this.setState({ balance: parseInt(balance.toString()) / 10 ** 8 });
 
     var accountaddress = web3.currentProvider.selectedAddress;
     const ethbalance = await web3.eth.getBalance(accountaddress);
-    this.setState({ balance: Number(parseInt(btcbalance.toString()) / 10 ** 8).toFixed(5) });
     this.setState({ ether: Number(web3.utils.fromWei(ethbalance)).toFixed(5) });
   }
 
@@ -352,7 +352,7 @@ class App extends React.Component {
     // Retrieve signature from RenVM.
     this.log("Submitting to RenVM... waiting for two confirmations on the Bitcoin Blockchain");
     const signature = await deposit.submit()
-      .on("status", status => this.updateAdvancedView(1, status))
+      .on("status", status => this.updateAdvancedView(1, status));
 
     // Submit the signature to Ethereum and receive zBTC.
     this.log("Submitting to smart contract...");
