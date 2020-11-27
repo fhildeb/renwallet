@@ -26,7 +26,7 @@ class App extends React.Component {
       error: "",
 
       // Custom
-      depositamount: 0.001,
+      depositamount: 0.003,
       metamask: "",
       walleterror: "Loading information",
       ether: 0,
@@ -245,7 +245,7 @@ class App extends React.Component {
     const { web3 } = this.state;
     const contract = new web3.eth.Contract(ABI, contractAddress);
     const balance = await contract.methods.balance().call();
-    this.setState({ balance: parseInt(balance.toString()) / 10 ** 8 });
+    this.setState({ balance: Number(parseInt(balance.toString()) / 10 ** 8).toFixed(5) });
 
     var accountaddress = web3.currentProvider.selectedAddress;
     const ethbalance = await web3.eth.getBalance(accountaddress);
@@ -340,14 +340,13 @@ class App extends React.Component {
     
     // Show address for transfer of their BTC.
     const gatewayAddress = await mint.gatewayAddress();
-    this.log(`Deposit more than ${amount+0.00000001} BTC to ${gatewayAddress}`);
+    this.log(`Deposit ${amount} BTC to ${gatewayAddress}`);
 
     // Wait for the Darknodes to detect the BTC transfer.
     const confirmations = 0;
     const deposit = await mint.wait(confirmations)
     .on("deposit", deposit => this.storeTransfer({ ...transfer, deposit }))
-    .on("deposit", deposit => this.updateAdvancedView(0, deposit))
-    .on("deposit", deposit => console.log(deposit));
+    .on("deposit", deposit => this.updateAdvancedView(0, deposit));
     
     // Retrieve signature from RenVM.
     this.log("Submitting to RenVM... waiting for two confirmations on the Bitcoin Blockchain");
